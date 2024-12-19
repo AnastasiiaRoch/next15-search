@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { IProduct } from '@/lib/types';
 import { routes } from '@/lib/routes';
+import Typography from '@/components/Typography';
 
 interface IProps {
   product: IProduct;
@@ -21,17 +22,20 @@ const Product = ({ product }: IProps) => (
     </Link>
     <div className="mt-4 flex justify-between gap-2">
       <div>
-        <h3 className="text-sm text-gray-700">
+        <Typography
+          as="h3"
+          variant="h6"
+        >
           <Link
             className="hover:text-primary"
             href={routes.product(product?.id)}
           >
             {product?.title}
           </Link>
-        </h3>
+        </Typography>
         <p className="mt-1 text-sm text-gray-500">{product?.brand}</p>
       </div>
-      <p className="text-sm font-medium text-gray-900">${product?.price}</p>
+      <p className="text-sm font-medium text-gray-900 pt-[0.15rem]">${product?.price}</p>
     </div>
   </div>
 );

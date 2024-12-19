@@ -24,8 +24,8 @@ const SearchResult = async <T,>({ entity, request, renderCard }: IProps<T>) => {
 
   return (
     <>
-      <p className="text-sm">Search result: {data?.total}</p>
-      <Grid className="mt-4">
+      <p>Search result: {data?.total}</p>
+      <Grid className="mt-5">
         {data?.[entity]?.map((card: T, index: number) => renderCard({ card, index }))}
       </Grid>
       <Pagination

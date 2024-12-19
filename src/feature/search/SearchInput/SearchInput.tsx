@@ -49,7 +49,7 @@ const SearchInput = () => {
 
   return (
     <form
-      className="flex align-center gap-x-2 mb-6 children:mb-0"
+      className="flex flex-col md:flex-row align-center gap-3 mb-6 children:mb-0"
       role="search"
     >
       <InputField
