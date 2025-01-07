@@ -27,6 +27,7 @@ const SearchInput = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete('page');
     params.delete('category');
+    params.delete('tag');
 
     if (!inputValue) {
       params.delete('q');
