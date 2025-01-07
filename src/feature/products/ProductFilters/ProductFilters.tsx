@@ -13,21 +13,18 @@ interface IProps {
 const ProductFilters = ({ categoriesRequest }: IProps) => {
   const categories = use(categoriesRequest);
 
-  const { handleCategory, handleClear, search } = useSearchFilters({
+  const { handleCategory, handleClear, params } = useSearchFilters({
     categoryParam: 'category',
   });
 
-  const currentCategory = search.params.get('category');
+  const currentCategory = params.get('category');
   const [optimisticCategory, setOptimisticCategory] = useOptimistic(
     currentCategory,
     (_, action: string) => action,
   );
 
   return (
-    <FiltersUI
-      isPending={search.isPending}
-      onClear={handleClear}
-    >
+    <FiltersUI onClear={handleClear}>
       <div className="flex flex-wrap gap-3">
         {categories?.map((category: ICategory) => (
           <Tag

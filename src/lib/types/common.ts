@@ -9,7 +9,6 @@ export interface IComponent {
 export type SearchParamsType = Promise<{ [key: string]: string | string[] | undefined }>;
 
 export interface IApiResponse {
-  // [key: string]: T[] | number;
   total: number;
   skip: number;
   limit: number;

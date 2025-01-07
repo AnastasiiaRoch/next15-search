@@ -12,7 +12,7 @@ const useSearchFilters = ({ categoryParam }: IProps) => {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams.toString());
 
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
 
   const handleCategory = (
     key: string,
@@ -43,10 +43,7 @@ const useSearchFilters = ({ categoryParam }: IProps) => {
   return {
     handleCategory,
     handleClear,
-    search: {
-      isPending,
-      params: searchParams,
-    },
+    params: searchParams,
   };
 };
 

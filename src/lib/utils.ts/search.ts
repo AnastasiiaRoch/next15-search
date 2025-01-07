@@ -8,8 +8,10 @@ interface IParams {
   tag?: string;
 }
 
-export const encodeQuery = (query: string) => encodeURIComponent(query)?.replace(/%20|\+/g, '-');
-export const decodeQuery = (query: string) => decodeURIComponent(query)?.replace(/%20|\-/g, ' ');
+export const encodeQuery = (query: string) => encodeURIComponent(query);
+
+export const decodeQuery = (query: string | null) =>
+  query ? decodeURIComponent(query) : undefined;
 
 export const buildApiQueryString = (params: IParams) => {
   const limit = `?limit=${MAX_SEARCH_LIMIT}`;

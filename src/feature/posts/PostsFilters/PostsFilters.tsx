@@ -13,11 +13,11 @@ interface IProps {
 const PostFilters = ({ tagsRequest }: IProps) => {
   const tags = use(tagsRequest);
 
-  const { handleCategory, handleClear, search } = useSearchFilters({
+  const { handleCategory, handleClear, params } = useSearchFilters({
     categoryParam: 'tag',
   });
 
-  const currentCategory = search.params.get('tag');
+  const currentCategory = params.get('tag');
   const [optimisticCategory, setOptimisticCategory] = useOptimistic(
     currentCategory,
     (_, action: string) => action,
@@ -27,10 +27,7 @@ const PostFilters = ({ tagsRequest }: IProps) => {
   const transformedTags = tags?.slice(0, 36);
 
   return (
-    <FiltersUI
-      isPending={search.isPending}
-      onClear={handleClear}
-    >
+    <FiltersUI onClear={handleClear}>
       <div className="flex flex-wrap gap-3">
         {transformedTags?.map((tag: ICategory) => (
           <Tag

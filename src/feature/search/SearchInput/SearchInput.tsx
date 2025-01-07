@@ -6,26 +6,22 @@ import { FiX } from 'react-icons/fi';
 import { decodeQuery, encodeQuery } from '@/lib/utils.ts';
 import { InputChangeType } from '@/lib/types';
 import Button from '@/components/Button';
-import InputField from '@/components/InputField/InputField';
+import InputField from '@/components/InputField';
 import Spinner from '@/components/Spinner';
 
 const SearchInput = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const q = searchParams.get('q') || '';
+  const q = searchParams.get('q');
 
-  const initialValue = decodeQuery(q) || '';
+  const initialValue = decodeQuery(q);
   const [inputValue, setInputValue] = useState(initialValue);
   const [isPending, startTransition] = useTransition();
 
-  const handleChange = (e: InputChangeType) => {
-    setInputValue(e.target.value);
-  };
+  const handleChange = (e: InputChangeType) => setInputValue(e.target.value);
 
-  const handleClear = () => {
-    setInputValue('');
-  };
+  const handleClear = () => setInputValue('');
 
   const handleSearch = () => {
     const params = new URLSearchParams(searchParams.toString());

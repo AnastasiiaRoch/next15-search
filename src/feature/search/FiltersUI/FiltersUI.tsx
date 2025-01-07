@@ -3,15 +3,11 @@ import { IComponent } from '@/lib/types';
 import Button from '@/components/Button';
 
 interface IProps extends IComponent {
-  isPending?: boolean;
   onClear?: VoidFunction;
 }
 
-const FiltersUI = ({ children, isPending, onClear }: IProps) => (
-  <div
-    className="mb-8"
-    data-pending={isPending ? '' : undefined}
-  >
+const FiltersUI = ({ children, onClear }: IProps) => (
+  <div className="mb-8">
     {children}
     <div className="text-center md:text-right mt-5">
       <Button
