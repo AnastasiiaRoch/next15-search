@@ -16,18 +16,19 @@ export const buildApiQueryString = (params: IParams) => {
   const searchParams = new URLSearchParams();
   searchParams.set('limit', MAX_SEARCH_LIMIT.toString());
 
-  if (!isEmptyObj(params)) {
-    const category = params.category || params.tag;
+  if (isEmptyObj(params)) {
+    return searchParams.toString();
+  }
 
-    if (!category && params.q) {
-      searchParams.append('q', decodeQuery(params.q));
-    }
+  const category = params.category || params.tag;
+  if (!category && params.q) {
+    searchParams.append('q', decodeQuery(params.q));
+  }
 
-    const page = Number(params.page) || 1;
-    if (page > 1) {
-      const skip = (page - 1) * MAX_SEARCH_LIMIT;
-      searchParams.append('skip', skip.toString());
-    }
+  const page = Number(params.page) || 1;
+  if (page > 1) {
+    const skip = (page - 1) * MAX_SEARCH_LIMIT;
+    searchParams.append('skip', skip.toString());
   }
 
   return searchParams.toString();
