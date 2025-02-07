@@ -12,16 +12,16 @@ type TypographyOptions = {
   [key: string]: string;
 } | null;
 
-type TypographyStyle = {
+interface TypographyStyle {
   classes: string;
   options?: TypographyOptions;
-};
-
-type ParagraphOption = 'small' | 'medium' | 'large';
+}
 
 export type TypographyType = {
   [key in TypographyEnum]: TypographyStyle;
 };
+
+type ParagraphOption = 'small' | 'medium' | 'large';
 
 export type VariantType =
   | {

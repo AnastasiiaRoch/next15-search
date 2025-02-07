@@ -4,17 +4,16 @@ import { twMerge } from 'tailwind-merge';
 import { ICommonForm, InputElementType, TextareaElementType } from '@/lib/types';
 import WithLabel from '../WithLabel';
 
+type VariantType = 'input' | 'textarea';
 interface CommonProps extends ICommonForm {
   containerClassName?: string;
   ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
-  variant: 'input' | 'textarea';
+  variant: VariantType;
 }
 
 type InputFieldType =
   | (InputElementType & { variant: 'input' })
   | (TextareaElementType & { variant: 'textarea' });
-
-type IProps = CommonProps & InputFieldType;
 
 const InputField = ({
   buttonClick,
@@ -30,7 +29,7 @@ const InputField = ({
   variant,
   ref,
   ...props
-}: IProps) => (
+}: CommonProps & InputFieldType) => (
   <WithLabel
     buttonClick={buttonClick}
     className={containerClassName}

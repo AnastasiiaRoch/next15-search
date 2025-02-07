@@ -7,7 +7,7 @@ import { IComponent } from '@/lib/types';
 import PaginationLink from './PaginationLink';
 import PaginationArrow from './PaginationArrow';
 
-interface IProps extends Omit<IComponent, 'children'> {
+interface IProps extends Pick<IComponent, 'className'> {
   itemsPerPage?: number;
   totalItems: number;
 }

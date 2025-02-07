@@ -7,18 +7,24 @@ interface ICard<T> {
   index?: number;
 }
 
+interface IData<T> {
+  total: number;
+  [key: string]: T[] | number;
+}
+
 interface IProps<T> {
   entity: string;
   renderCard: ({ card, index }: ICard<T>) => React.ReactElement;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  request: Promise<any>;
+  request: Promise<IData<T>>;
 }
 
 const SearchResult = async <T,>({ entity, request, renderCard }: IProps<T>) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const data = await request;
 
-  if (!data || !data?.[entity]?.length) {
+  const entityData = data[entity] as T[] | undefined;
+
+  if (!data || !entityData?.length) {
     return <p>No results found</p>;
   }
 
@@ -26,7 +32,7 @@ const SearchResult = async <T,>({ entity, request, renderCard }: IProps<T>) => {
     <>
       <p>Search result: {data?.total}</p>
       <Grid className="mt-5">
-        {data?.[entity]?.map((card: T, index: number) => renderCard({ card, index }))}
+        {entityData?.map((card: T, index: number) => renderCard({ card, index }))}
       </Grid>
       <Pagination
         className="mt-10"
